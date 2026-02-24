@@ -1,0 +1,215 @@
+\section{Calculations}
+
+In the following, a three-phase AC machine with the following parameters is considered \autoref{tab:machine_parameters}:
+
+\begin{table}[ht]
+    \centering
+    \caption{Machine parameters.}
+    \label{tab:machine_parameters}
+    \begin{tblr}{
+        colspec = {Q Q Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Pole pairs & Series turns per phase & Stator inner radius axial length & Air gap length \\
+    $p = 1$ & $N_s = 50 $ & $l = \SI{0.254}{\meter} $ & $g = \SI{5e-3}{\meter}$ \\
+        
+    \end{tblr}
+\end{table}
+
+The currents in the stator are given by:
+
+\begin{align}
+    i_{sa}(t) &= 55 \sqrt{2} \cos(\omega t) \\
+    i_{sb}(t) &= 55 \sqrt{2} \cos(\omega t - 2\pi/3) \\
+    i_{sc}(t) &= 55 \sqrt{2} \cos(\omega t + 2\pi/3)
+\end{align}
+
+\subsection{Calculate the self inductance of the machine}
+The self inductance as well as the mutual inductances per phase can be calculated as follows:
+
+\begin{align}
+    L_{m} = \frac{\mu_0 r l}{g} \int_{0}^{2\pi} N_a(\phi) N_b(\phi) d\phi \\
+    L_{l} = \frac{\mu_0 r l}{g} \int_{0}^{2\pi} N_a(\phi) N_a(\phi) d\phi
+\end{align}
+
+The windings in the machine are distributed cosinusoidally which results in the following winding functions for phase a, b and c:
+
+\begin{align}
+    N_a(\phi) &= \frac{N_s}{2} \cos(p \phi) \\
+    N_b(\phi) &= \frac{N_s}{2} \cos(p \phi - 2\pi/3) \\
+    N_c(\phi) &= \frac{N_s}{2} \cos(p \phi + 2\pi/3)
+\end{align}
+
+With this, the mutual and self inductances can be calculated as \autoref{tab:inductances}:
+
+\begin{table}[ht]
+    \centering
+    \caption{Mutual and self inductances.}
+    \label{tab:inductances}
+    \begin{tblr}{
+        colspec = {Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Mutual inductance & Self inductance  \\
+    $L_m = \SI{0.0159}{\henry}$ & $L_l = \SI{0.00796}{\henry}$ \\
+    \end{tblr}
+\end{table}
+
+\subsection{Calculate the phase flux linkage \texorpdfstring{$\lambda_{sa}$}{lambda\_sa} at \texorpdfstring{$\omega t = 0$}{wt = 0} and \texorpdfstring{$\omega t = \frac{3}{2} \pi$}{wt = 3/2 pi}}
+
+The flux linkage can be calculated as follows:
+
+$$
+\begin{bmatrix}
+    \lambda_{sa} \\
+    \lambda_{sb} \\
+    \lambda_{sc}
+\end{bmatrix} 
+= 
+\begin{bmatrix}
+    L_l + L_m & -\frac{1}{2}L_m & -\frac{1}{2}L_m \\
+    -\frac{1}{2}L_m & L_l + L_m & -\frac{1}{2}L_m \\
+    -\frac{1}{2}L_m & -\frac{1}{2}L_m & L_l + L_m
+\end{bmatrix}
+\begin{bmatrix}
+    i_{sa} \\
+    i_{sb} \\
+    i_{sc}
+\end{bmatrix}
+\label{eq:flux_matrix}
+$$
+
+With this, the flux linkage at $\omega t = 0$ and $\omega t = \frac{3}{2} \pi$ can be calculated as \autoref{tab:flux_linkage}:
+
+\begin{table}[ht]
+    \centering
+    \caption{Flux linkage.}
+    \label{tab:flux_linkage}
+    \begin{tblr}{
+        colspec = {Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Flux linkage at $\omega t = 0$ & Flux linkage at $\omega t = \frac{3}{2} \pi$  \\
+    $\lambda_{sa} = \SI{0.3095}{\weber}$ & $\lambda_{sa} = \SI{0.0000}{\weber}$ \\
+    \end{tblr}
+
+\end{table}
+
+\subsection{Calculate the space vector of the current at \texorpdfstring{$\omega t = 0$}{wt=0} and \texorpdfstring{$\omega t = \frac{3}{2}\pi$}{wt=3/2 pi}}
+The space vector of the current can be calculated as follows:
+
+\begin{equation}
+    \vec{i} = i e^{j\phi^*} = i_\alpha + ji_\beta = i \cos(\phi^*) + ji \sin(\phi^*)    
+\end{equation}
+
+This yields the following space vectors for $\omega t = 0$ and $\omega t = \frac{3}{2} \pi$ \autoref{tab:current_space_vectors}:
+
+\begin{table}[ht]
+    \centering
+    \caption{Current space vectors.}
+    \label{tab:current_space_vectors}
+    \begin{tblr}{
+        colspec = {Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Space vector at $\omega t = 0$ & Space vector at $\omega t = \frac{3}{2} \pi$  \\
+    $\vec{i} = 77.78 e^{j0^\circ}$ & $\vec{i} = 77.78 e^{-j90^\circ}$ \\
+    \end{tblr}
+\end{table}
+
+\subsection{Calculate the space vector of the flux linkage at \texorpdfstring{$\omega t = 0$}{wt = 0} and \texorpdfstring{$\omega t = \frac{3}{2}\pi$}{wt = 3/2 pi}}
+
+The space vector of the flux linkage can be from \autoref{eq:flux_matrix} and the space vector of the current \autoref{tab:flux_space_vectors}: 
+
+\begin{table}[ht]
+    \centering
+    \caption{Flux linkage space vectors.}
+    \label{tab:flux_space_vectors}
+    \begin{tblr}{
+        colspec = {Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Space vector of flux linkage at $\omega t = 0$ & Space vector of flux linkage at $\omega t = \frac{3}{2} \pi$  \\
+    $\vec{\lambda} = 0.3095 e^{j0^\circ}$ & $\vec{\lambda} = 0.3095 e^{-j90^\circ}$ \\
+    \end{tblr}
+\end{table}
+
+
+\subsection{Give possible \texorpdfstring{$i_a$}{ia}, \texorpdfstring{$i_b$}{ib} and \texorpdfstring{$i_c$}{ic} combinations for \texorpdfstring{$\mathcal{F}_m = 0$}{Fm = 0}}
+The magnetomotive force of an AC machine where the phases are distributed evenly 120° apart can be calculated as follows:
+
+\begin{equation}
+    \mathcal{F}_m = N_m/2 \cdot \frac{3}{2} (i_a + i_be^{-j\frac{2\pi}{3}} + i_ce^{j\frac{2\pi}{3}})
+\end{equation}
+
+This will be zero if the amplitudes of $i_a$, $i_b$ and $i_c$ are the same \autoref{tab:current_combinations}.
+
+\begin{table}[ht]
+    \centering
+    \caption{Possible combinations of $i_a$, $i_b$ and $i_c$ for $\mathcal{F}_m = 0$}
+    \label{tab:current_combinations}
+    \begin{tblr}{
+        colspec = {Q Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Current $i_a$ & Current $i_b$ & Current $i_c$  \\
+    10 A & 10 A & 10 A \\
+    -5 A & -5 A & -5 A \\
+    0 A & 0 A & 0 A \\
+    \end{tblr}
+\end{table}
+
+\newpage
+
+\subsection{Given \texorpdfstring{$i_{sa} = i_{sb} = i_{sc} = 55 \sqrt{2} \cos(\omega t)$}{isa = isb = isc} calculate \texorpdfstring{$i_{s\alpha}, i_{s\beta}$}{isalpha, isbeta} and \texorpdfstring{$i_{s0}$}{is0} and the MMF space vector \texorpdfstring{$\vec{\mathcal{F}}_m$}{Fm} for \texorpdfstring{$\omega t = 0$}{wt = 0}}
+
+To go from the abc reference frame to the $\alpha\beta$ reference frame, the following transformation can be used:
+
+$$
+\begin{bmatrix}
+    i_{\alpha} \\
+    i_{\beta} \\
+    i_{0}
+\end{bmatrix}
+=
+\frac{2}{3}
+\begin{bmatrix}
+    1 & -\frac{1}{2} & -\frac{1}{2} \\
+    0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2} \\
+    \frac{1}{2} & \frac{1}{2} & \frac{1}{2}
+\end{bmatrix}
+\begin{bmatrix}
+    i_{sa} \\
+    i_{sb} \\
+    i_{sc}
+\end{bmatrix}
+$$
+
+This yields the following currents in the $\alpha\beta$ reference frame \autoref{tab:alpha_beta}:
+
+\begin{table}[ht]
+    \centering
+    \caption{Currents in the $\alpha\beta$ reference frame}
+    \label{tab:alpha_beta}
+    \begin{tblr}{
+        colspec = {Q Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Current $i_{\alpha}$ & Current $i_{\beta}$ & Current $i_{0}$  \\
+    \SI{0}{A} & \SI{0}{A} & \SI{77.782}{A} \\
+    \end{tblr}
+\end{table}

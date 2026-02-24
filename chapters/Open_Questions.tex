@@ -1,0 +1,56 @@
+\section{Open Questions}
+\subsection{Why is it impossible to develop torque with the machine used in this assignment, even with a nice set of
+sinusoidal currents?}
+
+Because the the current and the flux will always be alligned. In an AC machine, the torque is proportional to the cross product of the current and the flux. $T \propto \vec{i} \times \vec{\lambda}$. If the current and the flux are alligned, the cross product will be zero and no torque can be developed.
+
+\subsection{Calculate the current phasor \texorpdfstring{$\underline{I_{sa}}$}{Isa} for \texorpdfstring{$\omega t = 0$}{wt = 0} and \texorpdfstring{$\omega t = \frac{3}{2}\pi$}{wt = 3/2 pi}. Which relations are there between the current phasor and the current vector (length, angle, meaning).}
+
+The current phasor $\underline{I_{sa}}$ can be calculated from the current $i_{sa}$ as follows:
+
+\begin{equation}
+    \underline{I_{sa}} = I_{sa} e^{j\phi} = 77.78 e^{j\phi} 
+\end{equation}
+
+Where $I_{sa}$ is the amplitude of the current. This yields the following current phasors:
+
+\begin{table}[ht]
+    \centering
+    \caption{Current phasors.}
+    \label{tab:current_phasors}
+    \begin{tblr}{
+        colspec = {Q Q},
+        row{1} = {font=\bfseries},
+        hlines,
+        vlines,
+    }
+    Current phasor at $\omega t = 0$ & Current phasor at $\omega t = \frac{3}{2} \pi$  \\
+    $\underline{I_{sa}} = 77.78 e^{j0^\circ}$ & $\underline{I_{sa}} = 77.78 e^{-j90^\circ}$ \\
+    \end{tblr}
+\end{table}
+
+The current phasor describes the rotation of the current vector in the complex plane. The length of the phasor corresponds to the amplitude of the current, while the angle corresponds to the phase of the current. The current vector describes the physical rotation of the current in the machine. Therefore its rotation is a positional rotation, while the phasor describes the rotation in the complex plane and thus is a temporal rotation.
+
+
+\subsection{Why do we assume sinusoidally distributed stator windings?}
+
+This is a convenient assumption that allows us to neglect all harmonics. In a real machine, the stator windings are not perfectly sinusoidally distributed, which leads to the presence of harmonics in the current and flux. These harmonics can cause additional losses and reduce the efficiency of the machine.
+
+\subsection{What is the magnetomotive force \texorpdfstring{$\vec{\mathcal{F}}_m$}{Fm}? What is the unit of magnetomotive force?}
+The magnetomotive force $\vec{\mathcal{F}}_m$ is the magnetic equivalent of the electromotive force (voltage) in an electric circuit. It is the force that drives the magnetic flux through the machine. The unit of magnetomotive force is the ampere-turn (At), since it is the product of the current (in amperes) and the number of turns in the winding.
+
+\subsection{What is the meaning of the vector for the magnetomotive force \texorpdfstring{$\vec{\mathcal{F}}_m$}{Fm}?}
+The vector for the magnetomotive force $\vec{\mathcal{F}}_m$ describes the direction and magnitude of the magnetomotive force in the machine. The direction of the vector indicates the direction of the magnetic flux, while the magnitude indicates the strength of the magnetomotive force. In an AC machine, the magnetomotive force vector rotates in time, which leads to a rotating magnetic field that interacts with the current to produce torque.
+
+\subsection{Which space harmonic of the air-gap flux density gives a flux linkage with a sinusoidally distributed winding? Why?}
+
+If the winding is sinusoidally distributed, the fundamental space harmonic of the air-gap flux density will give a flux linkage with the winding. The other harmonics will not give a flux linkage their amplitude will be zero.
+
+\subsection{What is the essence of the Clarke-transformation?}
+
+The essence of the Clarke-transformation is to transform the three-phase currents into a two-dimensional orthogonal coordinate system. This allows us to analyze the currents in a more convenient way, especially when dealing with AC machines.
+
+\subsection{Which advantages does it have to use the Clarke-transformation?}
+
+The advantages of using the Clarke-transformation are that it simplifies the analysis of AC machines. It allows us to represent the three-phase currents as a single vector in a two-dimensional plane, which makes it easier to analyze the interactions between the currents and the magnetic field.
+
